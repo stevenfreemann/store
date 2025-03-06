@@ -13,7 +13,7 @@ const Card = ({ product, submitProduct }: CardProps) => {
             />
             <div className="flex w-full justify-between px-6 py-4">
                 <div className="font-bold text-xl mb-2 text-white">
-                    {product.name}
+                    {product.name} {product.price}
                 </div>
                 <div>
                     <button
