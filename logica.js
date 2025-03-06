@@ -10,7 +10,7 @@ const data = [
 function findCombination(data, limit) {
     let bestCombination = { total: 0, products: [] }
 
-    function explore(startIndex, currentTotal, currentProducts) {
+    function sumRecursive(startIndex, currentTotal, currentProducts) {
         if (currentTotal > bestCombination.total && currentTotal <= limit) {
             bestCombination = {
                 total: currentTotal,
@@ -24,14 +24,14 @@ function findCombination(data, limit) {
 
             if (newTotal <= limit) {
                 currentProducts.push(product)
-                explore(i + 1, newTotal, currentProducts)
+                sumRecursive(i + 1, newTotal, currentProducts)
                 return
             }
         }
     }
 
     for (let start = 0; start < data.length; start++) {
-        explore(start, 0, [])
+        sumRecursive(start, 0, [])
     }
 
     return bestCombination.products
