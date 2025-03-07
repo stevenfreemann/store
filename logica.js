@@ -1,7 +1,8 @@
 const data = [
-    { id: 1, name: "Producto 1", price: 6 },
-    { id: 2, name: "Producto 2", price: 6 },
+    { id: 1, name: "Producto 1", price: 7 },
+    { id: 2, name: "Producto 2", price: 7 },
     { id: 3, name: "Producto 3", price: 3 },
+    { id: 4, name: "Producto 4", price: 6 },
     { id: 4, name: "Producto 4", price: 3 },
 ]
 
@@ -16,7 +17,7 @@ function findCombination(data, limit) {
                 currentProducts.push(product)
                 currentTotal = newTotal
             }
-            if (currentTotal > bestCombination.total && currentTotal <= limit) {
+            if (currentTotal > bestCombination.total) {
                 bestCombination = {
                     total: currentTotal,
                     products: [...currentProducts],
