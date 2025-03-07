@@ -13,32 +13,29 @@ function findCombination(data: Product[], limit: number) {
         products: Product[]
     }
 
-    function sumRecursive(
+    function sum(
         startIndex: number,
         currentTotal: number,
         currentProducts: Product[]
     ) {
-        if (currentTotal > bestCombination.total && currentTotal <= limit) {
-            bestCombination = {
-                total: currentTotal,
-                products: [...currentProducts],
-            }
-        }
-
         for (let i = startIndex; i < data.length; i++) {
             const product = data[i]
             const newTotal = currentTotal + product.price
-
             if (newTotal <= limit) {
                 currentProducts.push(product)
-                sumRecursive(i + 1, newTotal, currentProducts)
-                return
+                currentTotal = newTotal
+            }
+            if (currentTotal > bestCombination.total) {
+                bestCombination = {
+                    total: currentTotal,
+                    products: [...currentProducts],
+                }
             }
         }
     }
 
     for (let start = 0; start < data.length; start++) {
-        sumRecursive(start, 0, [])
+        sum(start, 0, [])
     }
 
     return bestCombination.products
